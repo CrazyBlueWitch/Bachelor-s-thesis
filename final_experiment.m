@@ -28,5 +28,4 @@ for i = 1:length(kinova_vel)
     send(vel_topic, vel_msg); 
 end
 
-% x 0.2108; y -0.2657; z 0.5035
 rosshutdown
