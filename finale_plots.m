@@ -1,8 +1,6 @@
 clc; close all; clear all
 load('rally_cmd_vel_50hz.mat')
 
-% В папка Ралица П. задание
-% bag = rosbag('C:\Users\npetr\Desktop\Diplomna\rally2.bag');
 bag = rosbag('C:\Users\npetr\Desktop\Diplomna\subset (3).bag');
 % 
 bSel = select(bag,'Topic','/j2s6s300_driver/out/tool_pose');
