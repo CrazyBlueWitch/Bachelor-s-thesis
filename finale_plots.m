@@ -1,12 +1,10 @@
 clc; close all; clear all
-load('rally_cmd_vel_50hz.mat')
+load('cmd_vel_50hz.mat')
 
 bag = rosbag('C:\Users\npetr\Desktop\Diplomna\subset (3).bag');
-% 
 bSel = select(bag,'Topic','/j2s6s300_driver/out/tool_pose');
-% 
 msgStructs = readMessages(bSel,'DataFormat','struct');
-% 
+ 
 xPoints = cellfun(@(m) double(m.Pose.Position.X),msgStructs);
 yPoints = cellfun(@(m) double(m.Pose.Position.Y),msgStructs);
 zPoints = cellfun(@(m) double(m.Pose.Position.Z),msgStructs);
@@ -17,21 +15,19 @@ for i=1:length(vel_50)
     h = 0.02*vel_50(i)*1.75;
     pos_kuka = pos_kuka + h;
 end
-% % 
+
 for i = 1:length(xPoints)
     xPoints(i) = 0.2103;
 end
-% % ???
+
 for i = 1:length(zPoints)
     zPoints(i) = zPoints(1);
 end
-% % ???
+
 for i = 1:length(yPoints)
-%     ???
     if i == 181
         yPoints(i) = -0.659;
     end 
-%     ???
     if i > 182
         yPoints(i) = -0.662625730037689;
     end
@@ -63,7 +59,6 @@ ylabel('m')
 figure(2)
 plot(newY+kuka)
 grid on
-% ylim([-0.1 0.1])
 ylim([-0.3 -0.2])
 xlim([0 250])
 title('Error')
@@ -84,8 +79,6 @@ plot(newY)
 grid on
 xlim([0 250])
 title('Y cart Kinova')
-% ylim([-0.1 0.1])
-% % ylim([-0.3 -0.2])
 xlabel('Samples')
 ylabel('m')
 
