@@ -11,8 +11,6 @@ vel_topic = rospublisher('/j2s6s300_driver/in/joint_velocity');
 % Дефиниране на съобщение, което ще съдържа стойностите за скоростите.
 vel_msg = rosmessage(vel_topic);
 
-% pos_topic = rossubscriber('/j2s6s300_driver/out/tool_pose');
-
 % цикъла for се изпълнява толкова пъти колкото е дължината на вектора
 % kinova_vel.
 for i = 1:length(kinova_vel)
@@ -28,9 +26,7 @@ for i = 1:length(kinova_vel)
     vel_msg.Joint6 = rad2deg(kinova_vel(6,i));
 %     изпращане на стойностите към ставите. 
     send(vel_topic, vel_msg); 
-%     pause(0.01);
 end
 
 % x 0.2108; y -0.2657; z 0.5035
-% Терминира ros възела.
 rosshutdown
